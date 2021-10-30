@@ -1,0 +1,96 @@
+<template>
+  <div
+    class="
+      pt-48
+      grid grid-cols-1
+      sm:grid-cols-2
+      md:grid-cols-3
+      xl:grid-cols-4
+      2xl:grid-cols-5
+      gap-4
+    "
+  >
+    <div
+      v-for="(movie, index) in movies"
+      :key="index"
+      class="flex justify-center items-center flex-col"
+    >
+      <div class="relative flex justify-center items-center flex-col w-64">
+        <img
+          :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
+          alt="/"
+        />
+        <p
+          class="
+            bg-gray-700
+            rounded-tr-full
+            h-10
+            w-16
+            items-end
+            flex
+            justify-start
+            pl-1
+            text-white text-3xl
+            relative
+            -top-10
+            -left-24
+          "
+        >
+          {{ movie.vote_average }}
+        </p>
+        <p
+          class="
+            absolute
+            w-64
+            bg-green-400
+            rounded-t-xl
+            p-3
+            text-white text-sm
+            bottom-10
+            transition-opacity
+            duration-300
+            ease-out
+            opacity-0
+            hover:opacity-100
+            z-10
+          "
+        >
+          {{ movie.overview }}
+        </p>
+      </div>
+      <div>
+        <p class="relative font-extrabold -top-10">
+          {{ movie.title.slice(0, 25)
+          }}<span v-if="movie.title.length > 25">...</span>
+        </p>
+      </div>
+      <Button class="relative -left-20 -top-10" buttonTxt="Details" />
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+export default {
+  data() {
+    return {
+      movies: [],
+    }
+  },
+  async fetch() {
+    await this.getMovies()
+  },
+  methods: {
+    async getMovies() {
+      const data = axios.get(
+        `https://api.themoviedb.org/3/search/movie?api_key=f032274d9c9fd3adb40ade7cdc65485b&language=en-US&page=1&query=$1`
+      )
+      const result = await data
+      result.data.results.forEach((movie) => {
+        this.movies.push(movie)
+      })
+      console.log(result)
+    },
+  },
+}
+</script>

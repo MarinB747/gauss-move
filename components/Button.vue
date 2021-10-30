@@ -1,15 +1,7 @@
 <template>
   <button
     v-if="show"
-    class="
-      bg-transparent
-      border-black border
-      z-10
-      w-20
-      h-10
-      rounded-2xl
-      text-red-600
-    "
+    class="bg-gray-600 border-black border z-1 w-20 h-10 rounded-2xl text-white"
     v-on:click="setShow"
   >
     {{ buttonTxt }}
@@ -17,13 +9,13 @@
   <button
     v-else
     class="
-      bg-transparent
+      bg-gray-600
       border-black border
       z-10
       w-20
       h-10
       rounded-2xl
-      text-green-500
+      text-green-400
     "
     v-on:click="setShow"
   >
