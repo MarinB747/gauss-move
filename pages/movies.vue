@@ -53,6 +53,9 @@
             opacity-0
             hover:opacity-100
             z-10
+            max-h-96
+            overflow-y-auto
+            scrollbar-hide
           "
         >
           {{ movie.overview }}

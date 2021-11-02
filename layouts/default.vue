@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Header @show-sidebar="setShow" />
-    <Sidebar v-show="show" />
+    <Header @button-clicked="setShow" />
+    <Sidebar v-show="show" v-model="show" @button-clicked="setShow" />
     <Nuxt />
   </div>
 </template>

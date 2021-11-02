@@ -34,7 +34,7 @@ export default {
   methods: {
     setShow() {
       this.show = !this.show
-      this.$emit('show-sidebar', this.show)
+      this.$emit('button-clicked', this.show)
     },
   },
 }
