@@ -67,7 +67,9 @@
           }}<span v-if="movie.title.length > 25">...</span>
         </p>
       </div>
-      <Button class="relative -left-20 -top-10" buttonTxt="Details" />
+      <NuxtLink :to="{ name: 'movies-movieid', params: { movieid: movie.id } }">
+        <Button class="relative -left-20 -top-10" buttonTxt="Details" />
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -92,7 +94,6 @@ export default {
       result.data.results.forEach((movie) => {
         this.movies.push(movie)
       })
-      console.log(result)
     },
   },
 }
