@@ -1,6 +1,8 @@
 <template>
   <div class="flex flex-col">
+    <Loading v-if="$fetchState.pending" />
     <div
+      v-else
       class="
         pt-48
         grid grid-cols-1
@@ -96,6 +98,7 @@ export default {
   async fetch() {
     await this.getMovies()
   },
+  fetchDelay: 1000,
 
   methods: {
     async getMovies() {
@@ -110,12 +113,12 @@ export default {
     },
     onNext() {
       this.page = this.page + 1
-      this.getMovies()
+      this.$fetch()
       this.$router.push({ path: 'movies', query: { page: this.page } })
     },
     onPrev() {
       this.page = this.page - 1
-      this.getMovies()
+      this.$fetch()
       this.$router.push({ path: 'movies', query: { page: this.page } })
     },
   },
