@@ -68,9 +68,7 @@
             }}<span v-if="movie.title.length > 25">...</span>
           </p>
         </div>
-        <NuxtLink
-          :to="{ name: 'movies-movieid', params: { movieid: movie.id } }"
-        >
+        <NuxtLink :to="{ name: 'movieid', params: { movieid: movie.id } }">
           <Button class="relative -left-20 -top-10" buttonTxt="Details" />
         </NuxtLink>
       </div>

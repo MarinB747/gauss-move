@@ -2,7 +2,7 @@
   <div>
     <Header @button-clicked="setShow" />
     <Sidebar v-show="show" v-model="show" @button-clicked="setShow" />
-    <Nuxt />
+    <Nuxt keep-alive />
   </div>
 </template>
 
