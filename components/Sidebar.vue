@@ -18,7 +18,9 @@
       <NuxtLink to="/movies">
         <Button class="relative m-5" buttonTxt="Movies" v-on="$listeners"
       /></NuxtLink>
-      <Button class="relative m-5" buttonTxt="Wishlist" v-on="$listeners" />
+      <NuxtLink to="/wishlist">
+        <Button class="relative m-5" buttonTxt="Wishlist" v-on="$listeners" />
+      </NuxtLink>
       <NuxtLink to="/"
         ><Button class="relative m-5" buttonTxt="Logout" v-on="$listeners"
       /></NuxtLink>

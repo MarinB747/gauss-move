@@ -12,9 +12,29 @@
   >
     <img src="@/assets/images/hero_bg.jpg" alt="/" class="w-screen" />
     <Button class="absolute right-5" buttonTxt="Sidebar" v-on="$listeners" />
+    <span
+      class="
+        w-8
+        h-8
+        absolute
+        left-5
+        bg-green-400
+        rounded-md
+        flex
+        items-center
+        justify-center
+      "
+      >{{ wishlist.length }}</span
+    >
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    wishlist() {
+      return this.$store.state.wishlist.list
+    },
+  },
+}
 </script>

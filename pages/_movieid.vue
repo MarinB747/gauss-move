@@ -78,10 +78,26 @@
           >Released on: {{ this.movie.release_date }}</span
         >
       </div>
-      <Button
-        class="w-24 h-16 absolute bottom-5"
-        buttonTxt="Add to Whishlist"
-      />
+      <div
+        class="flex justify-center items-center"
+        v-if="wishlistAdd"
+        v-on:click="wishlistMethod"
+      >
+        <Button
+          class="w-24 h-20 absolute bottom-5"
+          buttonTxt="Remove from Whishlist"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center"
+        v-else
+        v-on:click="wishlistMethod"
+      >
+        <Button
+          class="w-24 h-16 absolute bottom-5"
+          buttonTxt="Add to Whishlist"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -92,8 +108,10 @@ export default {
   data() {
     return {
       movie: '',
+      wishlistAdd: false,
     }
   },
+
   head() {
     return {
       title: this.movie.title,
@@ -114,7 +132,19 @@ export default {
       )
       const result = await data
       this.movie = result.data
-      console.log(result.data)
+    },
+    async addRemoveWishlist() {
+      this.wishlistAdd
+        ? await this.$store.commit('wishlist/remove', this.movie)
+        : await this.$store.commit('wishlist/add', this.movie)
+    },
+
+    wishlistToogle() {
+      this.wishlistAdd = !this.wishlistAdd
+    },
+    wishlistMethod() {
+      this.addRemoveWishlist()
+      this.wishlistToogle()
     },
   },
 }
