@@ -3,12 +3,17 @@ export const state = () => ({
 })
 
 export const mutations = {
+  initialiseStore() {
+    JSON.parse(localStorage.getItem('wishlist'))
+  },
   add(state, movie) {
     state.list.push({
       movie,
-    })
+    }),
+      localStorage.setItem('wishlist', JSON.stringify(state.list))
   },
   remove(state, { movie }) {
     state.list.splice(state.list.indexOf(movie), 1)
+    localStorage.setItem('wishlist', JSON.stringify(state.list))
   },
 }

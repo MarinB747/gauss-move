@@ -99,6 +99,9 @@ export default {
     await this.getMovies()
   },
   fetchDelay: 1000,
+  created() {
+    this.$store.commit('wishlist/initialiseStore')
+  },
 
   methods: {
     async getMovies() {

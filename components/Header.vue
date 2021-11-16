@@ -14,8 +14,6 @@
     <Button class="absolute right-5" buttonTxt="Sidebar" v-on="$listeners" />
     <span
       class="
-        w-8
-        h-8
         absolute
         left-5
         bg-green-400
@@ -24,7 +22,7 @@
         items-center
         justify-center
       "
-      >{{ wishlist.length }}</span
+      >Movies in wishlist: {{ wishlist.length }}</span
     >
   </div>
 </template>

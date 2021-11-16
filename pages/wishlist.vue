@@ -84,5 +84,10 @@ export default {
       return this.$store.state.wishlist.list
     },
   },
+  head() {
+    return {
+      title: 'Your Wishlist',
+    }
+  },
 }
 </script>

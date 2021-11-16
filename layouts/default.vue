@@ -13,6 +13,11 @@ export default {
       show: false,
     }
   },
+  created() {
+    if (process.client) {
+      this.$store.commit('wishlist/initialiseStore')
+    }
+  },
 
   methods: {
     setShow() {
