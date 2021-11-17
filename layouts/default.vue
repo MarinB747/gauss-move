@@ -13,9 +13,14 @@ export default {
       show: false,
     }
   },
-  created() {
+  computed: {
+    movies() {
+      return this.$store.state.wishlist.list
+    },
+  },
+  mounted() {
     if (process.client) {
-      this.$store.commit('wishlist/initialiseStore')
+      return this.$store.commit('wishlist/initialiseStore')
     }
   },
 

@@ -84,6 +84,11 @@ export default {
       return this.$store.state.wishlist.list
     },
   },
+  mounted() {
+    if (process.client) {
+      return this.$store.commit('wishlist/initialiseStore')
+    }
+  },
   head() {
     return {
       title: 'Your Wishlist',
