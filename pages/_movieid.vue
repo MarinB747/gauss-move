@@ -117,11 +117,13 @@ export default {
       title: this.movie.title,
     }
   },
+
   watch: {
     '$route.query': '$fetch',
   },
   async fetch() {
     await this.getSingleMoive()
+    await this.checkWishlist()
   },
   fetchDelay: 1000,
 
@@ -133,6 +135,15 @@ export default {
       const result = await data
       this.movie = result.data
     },
+    async checkWishlist() {
+      if (
+        await this.$store.state.wishlist.list.some(
+          (e) => e.movie.id === this.movie.id
+        )
+      )
+        this.wishlistAdd = true
+    },
+
     async addRemoveWishlist() {
       this.wishlistAdd
         ? await this.$store.commit('wishlist/remove', this.movie)

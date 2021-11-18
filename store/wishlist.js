@@ -3,10 +3,9 @@ export const state = () => ({
 })
 
 export const mutations = {
-  initialiseStore() {
+  initialiseStore(state) {
     let data = JSON.parse(localStorage.getItem('wishlist'))
     state.list = data
-    console.log(state.list)
   },
   add(state, movie) {
     state.list.push({
