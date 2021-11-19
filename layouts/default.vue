@@ -1,7 +1,14 @@
 <template>
   <div>
     <Header @button-clicked="setShow" />
-    <Sidebar v-show="show" v-model="show" @button-clicked="setShow" />
+    <transition
+      enter-class="transform -translate-x-48 duration-500"
+      enter-to-class="transform translate-x-0	duration-500"
+      leave-class="transform translate-x-0	duration-500"
+      leave-to-class="transform -translate-x-48	duration-500"
+    >
+      <Sidebar v-show="show" v-model="show" @button-clicked="setShow" />
+    </transition>
     <Nuxt keep-alive />
   </div>
 </template>
