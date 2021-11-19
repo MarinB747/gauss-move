@@ -18,6 +18,7 @@
         :key="index"
         class="flex justify-center items-center flex-col"
       >
+        <span class="h-0 w-0">{{ checkWishlist(movie.id) }}</span>
         <div class="relative flex justify-center items-center flex-col w-64">
           <img
             :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
@@ -41,6 +42,13 @@
           >
             {{ movie.vote_average }}
           </p>
+          <img
+            v-if="wishlistToogle"
+            src="../assets/images/wishlist.png"
+            alt="/"
+            class="absolute w-10 h-10 right-0 top-0"
+          />
+          <div v-else></div>
           <p
             class="
               absolute
@@ -93,10 +101,13 @@ export default {
     return {
       movies: [],
       page: 1,
+      wishlist: [],
+      wishlistToogle: false,
     }
   },
   async fetch() {
     await this.getMovies()
+    await this.getWishlist()
   },
   fetchDelay: 1000,
   created() {
@@ -113,6 +124,16 @@ export default {
       result.data.results.forEach((movie) => {
         this.movies.push(movie)
       })
+    },
+    async getWishlist() {
+      this.wishlist = await this.$store.state.wishlist.list.filter(
+        (e) => e.id === this.movies.id
+      )
+    },
+    checkWishlist(movieId) {
+      if (this.wishlist.some((e) => e.movie.id === movieId))
+        return (this.wishlistToogle = true)
+      else this.wishlistToogle = false
     },
     onNext() {
       this.page = this.page + 1
