@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  layout: 'auth',
   created() {
     this.$store.commit('wishlist/initialiseStore')
   },
