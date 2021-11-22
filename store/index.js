@@ -1,9 +1,15 @@
 export const state = () => ({
-  counter: 0,
+  user: '',
 })
-
+export const actions = {
+  nuxtServerInit({ dispatch }) {
+    console.log('troololollo')
+  },
+}
 export const mutations = {
-  increment(state) {
-    state.counter++
+  setUser(state) {
+    const user = this.$cookies.get('User')
+    console.log(user)
+    state.user = user
   },
 }

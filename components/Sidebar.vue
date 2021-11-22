@@ -21,9 +21,11 @@
       <NuxtLink to="/wishlist">
         <Button class="relative m-5" buttonTxt="Wishlist" v-on="$listeners" />
       </NuxtLink>
-      <NuxtLink to="/"
-        ><Button class="relative m-5" buttonTxt="Logout" v-on="$listeners"
-      /></NuxtLink>
+      <button v-on:click="removeUser()">
+        <NuxtLink to="/"
+          ><Button class="relative m-5" buttonTxt="Logout" v-on="$listeners"
+        /></NuxtLink>
+      </button>
     </div>
   </transition>
 </template>
@@ -34,5 +36,10 @@ export default {
     return {}
   },
   props: { modelValue: Boolean },
+  methods: {
+    removeUser() {
+      this.$cookies.remove('User')
+    },
+  },
 }
 </script>

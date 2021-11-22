@@ -30,6 +30,11 @@ export default {
       return this.$store.commit('wishlist/initialiseStore')
     }
   },
+  middleware({ app, redirect }) {
+    if (!app.$cookies.get('User')) {
+      return redirect('/')
+    }
+  },
 
   methods: {
     setShow() {

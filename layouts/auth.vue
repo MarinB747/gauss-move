@@ -13,29 +13,31 @@
         v-on:submit="checkForm"
       >
         <p>
-          <label for="username"></label
-          ><input
-            class="w-48 m-2 border-4"
-            id="username"
-            v-model="username"
-            type="text"
-            name="username"
-            placeholder="Username"
-          />
+          <label for="username"
+            ><input
+              class="w-48 m-2 border-4"
+              id="username"
+              v-model="username"
+              type="text"
+              name="username"
+              placeholder="Username"
+            />
+          </label>
         </p>
         <p>
-          <label from="password"></label>
-          <input
-            class="w-48 m-2 border-4"
-            id="password"
-            v-model="password"
-            type="password"
-            name="password"
-            placeholder="Password"
-          />
+          <label from="password">
+            <input
+              class="w-48 m-2 border-4"
+              id="password"
+              v-model="password"
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
+          </label>
         </p>
         <p class="text-white font-bold" v-if="error">
-          This user does not exist
+          Both fields must be filled out
         </p>
         <input class="m-2" type="submit" value="Submit" />
       </form>
@@ -55,10 +57,12 @@ export default {
   methods: {
     checkForm(e) {
       e.preventDefault()
-      if (this.username === 'user' && this.password === '12345') {
-        this.$router.push('/movies')
-      } else {
+      if (this.username === '' || this.password === '') {
         this.error = true
+      } else {
+        const cookieObj = { param1: this.username, param2: this.password }
+        this.$cookies.set('User', cookieObj)
+        this.$router.push('/movies')
       }
     },
   },
