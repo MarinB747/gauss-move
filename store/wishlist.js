@@ -4,8 +4,10 @@ export const state = () => ({
 
 export const mutations = {
   initialiseStore(state) {
-    let data = JSON.parse(localStorage.getItem('wishlist'))
-    state.list = data
+    if (process.client) {
+      let data = JSON.parse(localStorage.getItem('wishlist'))
+      state.list = data
+    }
   },
   add(state, movie) {
     state.list.push({

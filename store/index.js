@@ -2,14 +2,9 @@ export const state = () => ({
   user: '',
 })
 export const actions = {
-  nuxtServerInit({ dispatch }) {
-    console.log('troololollo')
-  },
-}
-export const mutations = {
-  setUser(state) {
+  nuxtServerInit({ state }) {
     const user = this.$cookies.get('User')
-    console.log(user)
-    state.user = user
+    state.user = user.param1
   },
 }
+export const mutations = {}
