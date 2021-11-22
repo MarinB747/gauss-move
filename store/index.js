@@ -3,8 +3,10 @@ export const state = () => ({
 })
 export const actions = {
   nuxtServerInit({ state }) {
-    const user = this.$cookies.get('User')
-    state.user = user.param1
+    if (this.$cookies.get('User')) {
+      const user = this.$cookies.get('User')
+      state.user = user.name
+    }
   },
 }
 export const mutations = {}

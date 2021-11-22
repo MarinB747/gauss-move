@@ -60,8 +60,9 @@ export default {
       if (this.username === '' || this.password === '') {
         this.error = true
       } else {
-        const cookieObj = { param1: this.username, param2: this.password }
+        const cookieObj = { name: this.username, pass: this.password }
         this.$cookies.set('User', cookieObj)
+        this.$store.state.user = cookieObj.name
         this.$router.push('/movies')
       }
     },
